@@ -655,3 +655,15 @@ function mostrarEscuelas(ruta, entidad, tipo) {
 		}
 	});
 }
+
+function exportar(entidad, tipo) {
+	var formulario  = IDFORMBUSQUEDA + entidad;
+	var url = 'exportar' + entidad + tipo;
+	cargarSubmitFormExportar(formulario, url);
+}
+
+function cargarSubmitFormExportar(idformulario, url) {
+	var url = url + '?' + $(idformulario).serialize();
+	mostrarMensaje('Reporte Generado Correctamente.', 'OK');
+	window.open(url,"_blank");
+}
