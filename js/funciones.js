@@ -35,21 +35,23 @@ function submitForm (idformulario) {
 * @return {html}
 */
 function cargarSubmitForm (idformulario, idContenedor) {
-    var contenedor = '#' + idContenedor;
-    $(contenedor).html(imgCargando());
-    var respuesta;
-    var data = submitForm(idformulario);
-    data.done(function(msg) {
-        respuesta = msg;
-    }).fail(function(xhr, textStatus, errorThrown) {
-        respuesta = 'ERROR';
-    }).always(function() {
-        if(respuesta === 'ERROR'){
-            $(contenedor).html('<button type="button" onclick="cerrarModal('+(contadorModal-1)+');" class="btn btn-warning btn-sm"><i class="fa fa-exclamation fa-lg"></i> Cancelar</button>');
-        }else{
-            $(contenedor).html(respuesta);    
-        }
-    });
+	if(idformulario!=='#formBusquedaPermiso') {
+	    var contenedor = '#' + idContenedor;
+	    $(contenedor).html(imgCargando());
+	    var respuesta;
+	    var data = submitForm(idformulario);
+	    data.done(function(msg) {
+	        respuesta = msg;
+	    }).fail(function(xhr, textStatus, errorThrown) {
+	        respuesta = 'ERROR';
+	    }).always(function() {
+	        if(respuesta === 'ERROR'){
+	            $(contenedor).html('<button type="button" onclick="cerrarModal('+(contadorModal-1)+');" class="btn btn-warning btn-sm"><i class="fa fa-exclamation fa-lg"></i> Cancelar</button>');
+	        }else{
+	            $(contenedor).html(respuesta);    
+	        }
+	    });
+	}
 }
 
 /**
